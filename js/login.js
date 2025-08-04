@@ -112,9 +112,9 @@ loginForm.addEventListener('submit', function(event) {
     // Redirecionar após delay
     setTimeout(() => {
         if (usuario.tipo === 'paciente') {
-            window.location.href = 'paciente.html';
+            window.location.href == 'paciente.html';
         } else if (usuario.tipo === 'psicoterapeuta') {
-            window.location.href = 'psicologo.html';
+            window.location.href == 'psicologo.html';
         }
     }, 1500);
 });
@@ -213,4 +213,5 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
     console.log('🔑 Credenciais de desenvolvimento:');
     console.log('👤 Paciente: paciente1 / 1234');
     console.log('👨‍⚕️ Psicólogo: psico1 / abcd');
+
 } 
