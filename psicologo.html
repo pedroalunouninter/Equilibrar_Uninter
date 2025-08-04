@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equilibrar - Área do Psicólogo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="perfil-psicologo">
+    <!-- Indicador de página -->
+    <div class="page-indicator" id="page-indicator"></div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="img/logoEquilibrar2.png" alt="Equilibrar Logo" class="logo">
+                <span class="logo-text">Equilibrar</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard" data-index="1">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="#pacientes" class="nav-link" data-section="pacientes" data-index="2">
+                    <i class="fas fa-users"></i>
+                    <span>Pacientes</span>
+                </a></li>
+                <li><a href="#sessoes" class="nav-link" data-section="sessoes" data-index="3">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Sessões</span>
+                </a></li>
+
+                <li><a href="#recursos" class="nav-link" data-section="recursos" data-index="4">
+                    <i class="fas fa-book"></i>
+                    <span>Recursos</span>
+                </a></li>
+                <li><a href="#configuracoes" class="nav-link" data-section="configuracoes" data-index="5">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name" id="user-name">Dr. Silva</div>
+                <div class="user-role">Psicólogo</div>
+            </div>
+        </div>
+
+        <button class="sidebar-toggle" id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard">
+                <div class="page-header">
+                    <h1>Dashboard do Psicólogo</h1>
+                    <p class="subtitle">Visão geral dos seus pacientes e atividades</p>
+                </div>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Total de Pacientes</h3>
+                            <div class="card-value" id="total-pacientes">24</div>
+                            <div class="card-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+3 este mês</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Sessões Hoje</h3>
+                            <div class="card-value" id="sessoes-hoje">5</div>
+                            <div class="card-trend">
+                                <i class="fas fa-clock"></i>
+                                <span>Próxima em 2h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Pacientes Ativos</h3>
+                            <div class="card-value" id="pacientes-ativos">18</div>
+                            <div class="card-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>85% engajados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Alertas</h3>
+                            <div class="card-value" id="alertas">3</div>
+                            <div class="card-trend warning">
+                                <i class="fas fa-eye"></i>
+                                <span>Requer atenção</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="navegarPara('pacientes')">
+                            <div class="action-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Ver Pacientes</h3>
+                                <p>Gerenciar pacientes</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('relatorios')">
+                            <div class="action-icon">
+                                <i class="fas fa-file-medical"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Relatórios</h3>
+                                <p>Análises e relatórios</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('agenda')">
+                            <div class="action-icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Agendar Sessão</h3>
+                                <p>Nova sessão</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('notas')">
+                            <div class="action-icon">
+                                <i class="fas fa-sticky-note"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Notas Clínicas</h3>
+                                <p>Anotações importantes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Atividade Recente</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Maria Silva</h4>
+                                <p>Registrou humor: 😊 Feliz (7/10)</p>
+                                <span class="activity-time">Há 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Sessão Agendada</h4>
+                                <p>João Santos - 15:00 (Online)</p>
+                                <span class="activity-time">Hoje</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Alerta</h4>
+                                <p>Ana Costa não registrou há 3 dias</p>
+                                <span class="activity-time">Há 1 dia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pacientes -->
+        <section id="pacientes" class="section">
+            <div class="page-header">
+                <h1>Meus Pacientes</h1>
+                <p class="subtitle">Gerencie e acompanhe seus pacientes</p>
+            </div>
+
+            <div class="pacientes-header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-pacientes" placeholder="Buscar pacientes...">
+                </div>
+                <button class="btn btn-primary" onclick="adicionarPaciente()">
+                    <i class="fas fa-plus"></i>
+                    Novo Paciente
+                </button>
+            </div>
+
+            <div class="pacientes-grid" id="pacientes-grid">
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>Maria Silva</h3>
+                            <span class="paciente-status ativo">Ativo</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">Hoje, 08:30</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">😊 Feliz (7/10)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">18/11 - 14:00</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary" onclick="verDetalhesPaciente(1)">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>João Santos</h3>
+                            <span class="paciente-status ativo">Ativo</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">Ontem, 19:45</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">😐 Neutro (5/10)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">20/11 - 16:00</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary" onclick="verDetalhesPaciente(2)">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>Ana Costa</h3>
+                            <span class="paciente-status alerta">Requer Atenção</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">13/11 - 09:15</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">😰 Ansioso (8/10)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">19/11 - 10:00</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>Pedro Oliveira</h3>
+                            <span class="paciente-status ativo">Ativo</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">12/11 - 20:30</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">😌 Calmo (8/10)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">22/11 - 15:30</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>Lucia Ferreira</h3>
+                            <span class="paciente-status inativo">Inativo</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">05/11 - 14:20</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">--</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">Não agendada</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="paciente-card">
+                    <div class="paciente-header">
+                        <div class="paciente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="paciente-info">
+                            <h3>Carlos Mendes</h3>
+                            <span class="paciente-status ativo">Ativo</span>
+                        </div>
+                    </div>
+                    <div class="paciente-stats">
+                        <div class="stat">
+                            <span class="stat-label">Último registro</span>
+                            <span class="stat-value">11/11 - 10:00</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Humor atual</span>
+                            <span class="stat-value">😔 Triste (3/10)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Próxima sessão</span>
+                            <span class="stat-value">21/11 - 11:00</span>
+                        </div>
+                    </div>
+                    <div class="paciente-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessões -->
+        <section id="sessoes" class="section">
+            <div class="page-header">
+                <h1>Sessões</h1>
+                <p class="subtitle">Gerencie suas sessões com os pacientes</p>
+            </div>
+
+            <div class="sessoes-content">
+                <div class="proxima-sessao">
+                    <h3>Próxima Sessão</h3>
+                    <div class="sessao-card" id="proxima-sessao-card">
+                        <div class="sessao-info">
+                            <h4>Maria Silva</h4>
+                            <p><i class="fas fa-calendar"></i> Hoje, 14:00</p>
+                            <p><i class="fas fa-clock"></i> 50 minutos</p>
+                            <p><i class="fas fa-video"></i> Online</p>
+                        </div>
+                        <div class="sessao-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Iniciar Sessão
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="historico-sessoes">
+                    <div class="section-header">
+                        <h3>Histórico de Sessões</h3>
+                        <div class="filtros">
+                            <select id="filtro-sessoes">
+                                <option value="todas">Todas as sessões</option>
+                                <option value="agendadas">Agendadas</option>
+                                <option value="concluidas">Concluídas</option>
+                                <option value="canceladas">Canceladas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sessoes-lista" id="sessoes-lista">
+                        <div class="sessao-item agendada">
+                            <div class="sessao-header">
+                                <h4>João Santos</h4>
+                                <span class="sessao-status agendada">Agendada</span>
+                            </div>
+                            <div class="sessao-info">
+                                <p><i class="fas fa-calendar"></i> 20/11 - 16:00</p>
+                                <p><i class="fas fa-clock"></i> 50 minutos</p>
+                                <p><i class="fas fa-video"></i> Presencial</p>
+                            </div>
+                            <div class="sessao-actions">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Iniciar
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sessao-item concluida">
+                            <div class="sessao-header">
+                                <h4>Ana Costa</h4>
+                                <span class="sessao-status concluida">Concluída</span>
+                            </div>
+                            <div class="sessao-info">
+                                <p><i class="fas fa-calendar"></i> 18/11 - 10:00</p>
+                                <p><i class="fas fa-clock"></i> 50 minutos</p>
+                                <p><i class="fas fa-video"></i> Online</p>
+                            </div>
+                            <div class="sessao-actions">
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i> Ver Detalhes
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-sticky-note"></i> Nota
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Recursos -->
+        <section id="recursos" class="section">
+            <div class="page-header">
+                <h1>Recursos e Materiais</h1>
+                <p class="subtitle">Acesse materiais de apoio e recursos terapêuticos</p>
+            </div>
+
+            <div class="recursos-content">
+                <div class="recursos-grid">
+                    <div class="recurso-card" onclick="acessarRecurso('protocolos')">
+                        <div class="recurso-icon">
+                            <i class="fas fa-book-medical"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Protocolos Terapêuticos</h3>
+                            <p>Acesse protocolos e técnicas terapêuticas</p>
+                        </div>
+                    </div>
+                    <div class="recurso-card" onclick="acessarRecurso('questionarios')">
+                        <div class="recurso-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Questionários</h3>
+                            <p>Instrumentos de avaliação psicológica</p>
+                        </div>
+                    </div>
+                    <div class="recurso-card" onclick="acessarRecurso('videos')">
+                        <div class="recurso-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Vídeos Educativos</h3>
+                            <p>Conteúdo educativo para pacientes</p>
+                        </div>
+                    </div>
+                    <div class="recurso-card" onclick="acessarRecurso('materiais')">
+                        <div class="recurso-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Materiais de Apoio</h3>
+                            <p>PDFs e materiais para download</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurações -->
+        <section id="configuracoes" class="section">
+            <div class="page-header">
+                <h1>Configurações</h1>
+                <p class="subtitle">Personalize suas configurações e preferências</p>
+            </div>
+
+            <div class="configuracoes-content">
+                <div class="config-section">
+                    <h3><i class="fas fa-clock"></i> Horário de Trabalho</h3>
+                    <p class="config-description">Configure seus horários de atendimento para cada dia da semana</p>
+                    <div class="horario-grid">
+                        <div class="horario-item">
+                            <label>Segunda-feira</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="08" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="18" placeholder="Fim">
+                            </div>
+                        </div>
+                        <div class="horario-item">
+                            <label>Terça-feira</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="08" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="18" placeholder="Fim">
+                            </div>
+                        </div>
+                        <div class="horario-item">
+                            <label>Quarta-feira</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="08" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="18" placeholder="Fim">
+                            </div>
+                        </div>
+                        <div class="horario-item">
+                            <label>Quinta-feira</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="08" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="18" placeholder="Fim">
+                            </div>
+                        </div>
+                        <div class="horario-item">
+                            <label>Sexta-feira</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="08" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="18" placeholder="Fim">
+                            </div>
+                        </div>
+                        <div class="horario-item">
+                            <label>Sábado</label>
+                            <div class="horario-inputs">
+                                <input type="time" value="09" placeholder="Início">
+                                <span>até</span>
+                                <input type="time" value="14" placeholder="Fim">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-actions">
+                        <button class="btn btn-primary" onclick="salvarHorarios()">
+                            <i class="fas fa-save"></i> Salvar Horários
+                        </button>
+                        <button class="btn btn-secondary" onclick="restaurarHorarios()">
+                            <i class="fas fa-undo"></i> Restaurar Padrão
+                        </button>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3><i class="fas fa-bell"></i> Notificações</h3>
+                    <p class="config-description">Configure quais notificações você deseja receber</p>
+                    <div class="notificacoes-config">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Lembretes de sessões (30 min antes)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Novos registros de pacientes</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Alertas de pacientes em risco</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>Relatórios semanais automáticos</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Confirmações de agendamento</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>Notificações de backup</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3><i class="fas fa-palette"></i> Aparência</h3>
+                    <p class="config-description">Personalize a aparência da interface</p>
+                    <div class="aparencia-config">
+                        <div class="tema-option">
+                            <label class="radio-item">
+                                <input type="radio" name="tema" value="claro" checked>
+                                <span class="radio-custom"></span>
+                                <div class="tema-preview claro">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content"></div>
+                                </div>
+                                <span class="tema-label">Tema Claro</span>
+                            </label>
+                        </div>
+                        <div class="tema-option">
+                            <label class="radio-item">
+                                <input type="radio" name="tema" value="escuro">
+                                <span class="radio-custom"></span>
+                                <div class="tema-preview escuro">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content"></div>
+                                </div>
+                                <span class="tema-label">Tema Escuro</span>
+                            </label>
+                        </div>
+                        <div class="tema-option">
+                            <label class="radio-item">
+                                <input type="radio" name="tema" value="auto">
+                                <span class="radio-custom"></span>
+                                <div class="tema-preview auto">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content"></div>
+                                </div>
+                                <span class="tema-label">Automático</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3><i class="fas fa-shield-alt"></i> Privacidade e Segurança</h3>
+                    <p class="config-description">Configure suas preferências de privacidade</p>
+                    <div class="privacidade-config">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Compartilhar dados anônimos para melhorias</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Backup automático dos dados</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>Login com autenticação de dois fatores</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Logs de atividade</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="logout-section">
+                    <div class="logout-info">
+                        <h4><i class="fas fa-user"></i> Informações da Conta</h4>
+                        <p>Dr. Silva • Último login: Hoje às 08:30</p>
+                    </div>
+                    <div class="logout-actions">
+                        <button class="btn btn-secondary" onclick="editarPerfil()">
+                            <i class="fas fa-user-edit"></i> Editar Perfil
+                        </button>
+                        <button class="btn btn-secondary" onclick="alterarSenha()">
+                            <i class="fas fa-key"></i> Alterar Senha
+                        </button>
+                        <button class="btn btn-danger" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Container de Notificações -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="js/psicologo.js"></script>
+</body>
+</html> 

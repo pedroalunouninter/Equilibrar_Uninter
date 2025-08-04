@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equilibrar - Área do Paciente</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="perfil-paciente">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="img/logoEquilibrar2.png" alt="Equilibrar Logo" class="logo">
+                <span class="logo-text">Equilibrar</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="#humor" class="nav-link" data-section="humor">
+                    <i class="fas fa-smile"></i>
+                    <span>Registrar Humor</span>
+                </a></li>
+                <li><a href="#sessoes" class="nav-link" data-section="sessoes">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Minhas Sessões</span>
+                </a></li>
+                <li><a href="#progresso" class="nav-link" data-section="progresso">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Meu Progresso</span>
+                </a></li>
+                <li><a href="#recursos" class="nav-link" data-section="recursos">
+                    <i class="fas fa-book"></i>
+                    <span>Recursos</span>
+                </a></li>
+                <li><a href="#perfil" class="nav-link" data-section="perfil">
+                    <i class="fas fa-user"></i>
+                    <span>Meu Perfil</span>
+                </a></li>
+
+            </ul>
+        </nav>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name" id="user-name">Maria Silva</div>
+                <div class="user-role">Paciente</div>
+            </div>
+        </div>
+
+        <button class="sidebar-toggle" id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard">
+                <div class="page-header">
+                    <h1>Meu Dashboard</h1>
+                    <p class="subtitle">Acompanhe seu bem-estar e progresso</p>
+                </div>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Humor Atual</h3>
+                            <div class="card-value" id="humor-atual">😊 Feliz</div>
+                            <div class="card-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>Melhorou hoje</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Próxima Sessão</h3>
+                            <div class="card-value" id="proxima-sessao">18/11 - 14:00</div>
+                            <div class="card-trend">
+                                <i class="fas fa-clock"></i>
+                                <span>Em 2 dias</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Dias Consecutivos</h3>
+                            <div class="card-value" id="dias-consecutivos">7</div>
+                            <div class="card-trend positive">
+                                <i class="fas fa-fire"></i>
+                                <span>Nova sequência!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Conquistas</h3>
+                            <div class="card-value" id="conquistas">12</div>
+                            <div class="card-trend positive">
+                                <i class="fas fa-star"></i>
+                                <span>+2 esta semana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="navegarPara('humor')">
+                            <div class="action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Registrar Humor</h3>
+                                <p>Como você está se sentindo?</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('sessoes')">
+                            <div class="action-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Ver Sessões</h3>
+                                <p>Próximas sessões agendadas</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('progresso')">
+                            <div class="action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Meu Progresso</h3>
+                                <p>Acompanhe sua evolução</p>
+                            </div>
+                        </div>
+                        <div class="action-card" onclick="navegarPara('recursos')">
+                            <div class="action-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Recursos</h3>
+                                <p>Materiais de apoio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Atividade Recente</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Humor Registrado</h4>
+                                <p>😊 Feliz (7/10) - Hoje às 08:30</p>
+                                <span class="activity-time">Há 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Sessão Agendada</h4>
+                                <p>Próxima sessão: 18/11 às 14:00</p>
+                                <span class="activity-time">Ontem</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Conquista Desbloqueada</h4>
+                                <p>7 dias consecutivos de registro!</p>
+                                <span class="activity-time">Há 3 dias</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registrar Humor -->
+        <section id="humor" class="section">
+            <div class="page-header">
+                <h1>Registrar Humor</h1>
+                <p class="subtitle">Como você está se sentindo hoje?</p>
+            </div>
+
+            <div class="humor-content">
+                <div class="humor-card">
+                    <h3>Selecione seu humor atual</h3>
+                    <div class="humor-options">
+                        <div class="humor-option" data-humor="feliz" data-valor="9">
+                            <div class="humor-emoji">😊</div>
+                            <span>Feliz</span>
+                        </div>
+                        <div class="humor-option" data-humor="calmo" data-valor="8">
+                            <div class="humor-emoji">😌</div>
+                            <span>Calmo</span>
+                        </div>
+                        <div class="humor-option" data-humor="neutro" data-valor="5">
+                            <div class="humor-emoji">😐</div>
+                            <span>Neutro</span>
+                        </div>
+                        <div class="humor-option" data-humor="triste" data-valor="3">
+                            <div class="humor-emoji">😔</div>
+                            <span>Triste</span>
+                        </div>
+                        <div class="humor-option" data-humor="ansioso" data-valor="2">
+                            <div class="humor-emoji">😰</div>
+                            <span>Ansioso</span>
+                        </div>
+                        <div class="humor-option" data-humor="irritado" data-valor="1">
+                            <div class="humor-emoji">😤</div>
+                            <span>Irritado</span>
+                        </div>
+                    </div>
+
+                    <div class="humor-scale">
+                        <label for="humor-scale">Nível de bem-estar (1-10):</label>
+                        <input type="range" id="humor-scale" min="1" max="10" value="7" class="slider">
+                        <div class="scale-value">
+                            <span>1</span>
+                            <span id="scale-value">7</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+
+                    <div class="humor-notes">
+                        <label for="humor-notes">Observações (opcional):</label>
+                        <textarea id="humor-notes" placeholder="Como você está se sentindo? O que aconteceu hoje?"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="registrarHumor()">
+                        <i class="fas fa-save"></i>
+                        Registrar Humor
+                    </button>
+                </div>
+
+                <div class="humor-history">
+                    <h3>Histórico de Humor</h3>
+                    <div class="history-chart">
+                        <canvas id="humor-chart"></canvas>
+                    </div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <div class="history-date">Hoje</div>
+                            <div class="history-humor">😊 Feliz (7/10)</div>
+                            <div class="history-time">08:30</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-date">Ontem</div>
+                            <div class="history-humor">😌 Calmo (8/10)</div>
+                            <div class="history-time">19:45</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-date">15/11</div>
+                            <div class="history-humor">😐 Neutro (5/10)</div>
+                            <div class="history-time">09:15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessões -->
+        <section id="sessoes" class="section">
+            <div class="page-header">
+                <h1>Minhas Sessões</h1>
+                <p class="subtitle">Acompanhe suas sessões com o psicólogo</p>
+            </div>
+
+            <div class="sessoes-content">
+                <div class="proxima-sessao">
+                    <h3>Próxima Sessão</h3>
+                    <div class="sessao-card">
+                        <div class="sessao-info">
+                            <h4>Sessão com Dr. Silva</h4>
+                            <p><i class="fas fa-calendar"></i> 18/11/2024 - 14:00</p>
+                            <p><i class="fas fa-clock"></i> 50 minutos</p>
+                            <p><i class="fas fa-video"></i> Online</p>
+                        </div>
+                        <div class="sessao-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-video"></i>
+                                Entrar na Sessão
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-calendar-plus"></i>
+                                Adicionar ao Calendário
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="historico-sessoes">
+                    <h3>Histórico de Sessões</h3>
+                    <div class="sessoes-lista">
+                        <div class="sessao-item concluida">
+                            <div class="sessao-header">
+                                <h4>Sessão com Dr. Silva</h4>
+                                <span class="sessao-status concluida">Concluída</span>
+                            </div>
+                            <div class="sessao-info">
+                                <p><i class="fas fa-calendar"></i> 11/11/2024 - 14:00</p>
+                                <p><i class="fas fa-clock"></i> 50 minutos</p>
+                                <p><i class="fas fa-video"></i> Online</p>
+                            </div>
+                            <div class="sessao-actions">
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i> Ver Resumo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sessao-item concluida">
+                            <div class="sessao-header">
+                                <h4>Sessão com Dr. Silva</h4>
+                                <span class="sessao-status concluida">Concluída</span>
+                            </div>
+                            <div class="sessao-info">
+                                <p><i class="fas fa-calendar"></i> 04/11/2024 - 14:00</p>
+                                <p><i class="fas fa-clock"></i> 50 minutos</p>
+                                <p><i class="fas fa-video"></i> Online</p>
+                            </div>
+                            <div class="sessao-actions">
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i> Ver Resumo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progresso -->
+        <section id="progresso" class="section">
+            <div class="page-header">
+                <h1>Meu Progresso</h1>
+                <p class="subtitle">Acompanhe sua evolução ao longo do tempo</p>
+            </div>
+
+            <div class="progresso-content">
+                <div class="progresso-cards">
+                    <div class="progresso-card">
+                        <h3>Humor Médio</h3>
+                        <div class="progresso-value">7.2/10</div>
+                        <div class="progresso-chart">
+                            <canvas id="humor-progresso"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="progresso-card">
+                        <h3>Dias Consecutivos</h3>
+                        <div class="progresso-value">7 dias</div>
+                        <div class="progresso-chart">
+                            <canvas id="consecutivos-progresso"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="progresso-card">
+                        <h3>Sessões Realizadas</h3>
+                        <div class="progresso-value">12 sessões</div>
+                        <div class="progresso-chart">
+                            <canvas id="sessoes-progresso"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conquistas">
+                    <h3>Conquistas Desbloqueadas</h3>
+                    <div class="conquistas-grid">
+                        <div class="conquista-item">
+                            <div class="conquista-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="conquista-content">
+                                <h4>7 Dias Consecutivos</h4>
+                                <p>Registrou humor por 7 dias seguidos</p>
+                                <span class="conquista-date">Desbloqueado hoje</span>
+                            </div>
+                        </div>
+                        
+                        <div class="conquista-item">
+                            <div class="conquista-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <div class="conquista-content">
+                                <h4>Humor Positivo</h4>
+                                <p>Manteve humor acima de 7/10 por 5 dias</p>
+                                <span class="conquista-date">Desbloqueado há 2 dias</span>
+                            </div>
+                        </div>
+                        
+                        <div class="conquista-item">
+                            <div class="conquista-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="conquista-content">
+                                <h4>Participação Ativa</h4>
+                                <p>Participou de 10 sessões</p>
+                                <span class="conquista-date">Desbloqueado há 1 semana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos -->
+        <section id="recursos" class="section">
+            <div class="page-header">
+                <h1>Recursos e Materiais</h1>
+                <p class="subtitle">Acesse materiais de apoio para seu bem-estar</p>
+            </div>
+
+            <div class="recursos-content">
+                <div class="recursos-grid">
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-book-medical"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Exercícios de Respiração</h3>
+                            <p>Técnicas para controlar ansiedade e estresse</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Meditação Guiada</h3>
+                            <p>Sessões de meditação para relaxamento</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Questionários de Autoavaliação</h3>
+                            <p>Instrumentos para avaliar seu bem-estar</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Vídeos Educativos</h3>
+                            <p>Conteúdo sobre saúde mental</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Materiais de Apoio</h3>
+                            <p>PDFs e documentos para download</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recurso-card">
+                        <div class="recurso-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="recurso-content">
+                            <h3>Grupos de Apoio</h3>
+                            <p>Conecte-se com outros pacientes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perfil -->
+        <section id="perfil" class="section">
+            <div class="page-header">
+                <h1>Meu Perfil</h1>
+                <p class="subtitle">Gerencie suas informações pessoais</p>
+            </div>
+
+            <div class="perfil-content">
+                <div class="perfil-card">
+                    <div class="perfil-header">
+                        <div class="perfil-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="perfil-info">
+                            <h3>Maria Silva</h3>
+                            <p>Paciente desde Janeiro 2024</p>
+                        </div>
+                    </div>
+                    
+                    <div class="perfil-details">
+                        <div class="detail-item">
+                            <label>Email</label>
+                            <p>maria.silva@email.com</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Telefone</label>
+                            <p>(11) 91234-5678</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Data de Nascimento</label>
+                            <p>15/03/1996</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Psicólogo</label>
+                            <p>Dr. Silva</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Editar Perfil
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Container de Notificações -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="js/paciente.js"></script>
+</body>
+</html> 
