@@ -1,0 +1,3743 @@
+/* Reset e variáveis */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary: #f8fafc;
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --highlight: #2563eb;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --text-muted: #94a3b8;
+  --white: #ffffff;
+  --black: #000000;
+  --shadow: rgba(37, 99, 235, 0.08);
+  --shadow-lg: rgba(37, 99, 235, 0.12);
+  --shadow-xl: rgba(37, 99, 235, 0.16);
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #2563eb;
+  --background: #ffffff;
+  --card-bg: #f8fafc;
+  --sidebar-bg: #0f172a;
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 14px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Melhorias de acessibilidade */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn:focus,
+.form-input:focus,
+.search-box input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Layout principal */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar melhorada */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  color: white;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background: #020617;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navegação melhorada */
+.sidebar-nav {
+  padding: var(--spacing-lg) 0;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-menu li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  margin-right: var(--spacing-md);
+  position: relative;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  font-weight: 600;
+}
+
+.nav-link.active span {
+  color: #ffffff !important;
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: #ffffff;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.nav-link i {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+  color: #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover i {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.nav-link.active i {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.nav-link span {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* User info melhorado */
+.user-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(30, 41, 59, 0.3);
+}
+
+.user-avatar i {
+  font-size: 20px;
+  color: white;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-role {
+  font-size: 12px;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: scale(1.1);
+}
+
+.logout-btn i {
+  font-size: 14px;
+}
+
+/* Main content melhorado */
+main {
+  flex: 1;
+  margin-left: 280px;
+  padding: var(--spacing-xl);
+  background: var(--background);
+  min-height: 100vh;
+}
+
+/* Background específico para páginas do paciente e psicólogo */
+.perfil-paciente main,
+.perfil-psicologo main {
+  background: #f8fafc;
+}
+
+/* Page Header melhorado */
+.page-header {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--border-light);
+  position: relative;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 1px;
+}
+
+.page-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.page-header .subtitle {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-bottom: 0;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Cards melhorados */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: 0 1px 3px var(--shadow);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-lg);
+  border-color: var(--border);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-primary);
+}
+
+.card-icon i {
+  font-size: 28px;
+  color: white;
+  z-index: 1;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.01em;
+}
+
+.card-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.02em;
+}
+
+.card-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.card-trend.positive {
+  color: var(--success);
+}
+
+.card-trend.warning {
+  color: var(--warning);
+}
+
+.card-trend i {
+  font-size: 12px;
+}
+
+/* Dashboard cards grid */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* Actions grid melhorado */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.action-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: 0 1px 3px var(--shadow);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-lg);
+  border-color: var(--border);
+}
+
+.action-card:hover::before {
+  transform: scaleX(1);
+}
+
+.action-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  background: var(--gradient-primary);
+}
+
+.action-icon i {
+  font-size: 24px;
+  color: white;
+}
+
+.action-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.01em;
+}
+
+.action-content p {
+  font-size: 14px;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Recent Activity melhorado */
+.recent-activity {
+  margin-top: var(--spacing-2xl);
+}
+
+.recent-activity h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.01em;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.activity-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.activity-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.activity-icon i {
+  font-size: 18px;
+  color: white;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-content h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: -0.01em;
+}
+
+.activity-content p {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.4;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Buttons melhorados */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: -0.2px;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(30, 41, 59, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 41, 59, 0.4);
+}
+
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-lg);
+}
+
+.btn-danger {
+  background: var(--gradient-danger);
+  color: white;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Search box melhorado */
+.search-box {
+  position: relative;
+  max-width: 400px;
+}
+
+.search-box i {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 44px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  background: var(--card-bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
+}
+
+/* Section headers melhorados */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+/* Notifications melhoradas */
+.notifications {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  pointer-events: none;
+}
+
+.notification {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 8px 24px var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 300px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notification.success {
+  border-left: 4px solid var(--success);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, var(--white) 100%);
+}
+
+.notification.error {
+  border-left: 4px solid var(--danger);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, var(--white) 100%);
+}
+
+.notification.warning {
+  border-left: 4px solid var(--warning);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, var(--white) 100%);
+}
+
+.notification.info {
+  border-left: 4px solid var(--info);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, var(--white) 100%);
+}
+
+.notification i {
+  font-size: 18px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.notification.success i {
+  color: var(--success);
+}
+
+.notification.error i {
+  color: var(--danger);
+}
+
+.notification.warning i {
+  color: var(--warning);
+}
+
+.notification.info i {
+  color: var(--info);
+}
+
+.notification span {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.notification-close:hover {
+  background: var(--background);
+  color: var(--text);
+  transform: scale(1.1);
+}
+
+.notification-close:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Estilos para página de login */
+.login-page {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+}
+
+.login-container {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  min-height: 600px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-header {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  color: white;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.login-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.logo-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
+.app-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.login-features {
+  margin-top: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.feature-item i {
+  width: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+.login-form-container {
+  flex: 1;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.form-header p {
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.form-label i {
+  color: var(--primary);
+  width: 16px;
+}
+
+.form-input {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 18px;
+  background: var(--card-bg);
+  color: var(--text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 50px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.password-input-container {
+  position: relative;
+  min-height: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.password-toggle:hover {
+  color: var(--primary);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  border: none;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.login-btn:hover::before {
+  left: 100%;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.access-info {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
+}
+
+.access-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.credential-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.credential-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.credential-card:hover::before {
+  transform: scaleX(1);
+}
+
+.credential-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+  border-color: #0f172a;
+}
+
+.credential-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.credential-details {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.credential-details p {
+  margin-bottom: var(--spacing-xs);
+}
+
+.credential-details strong {
+  color: var(--text);
+}
+
+.login-footer {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  main {
+    margin-left: 0;
+  }
+  
+  .sidebar-toggle {
+    display: block;
+    position: fixed;
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+    z-index: 1001;
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: var(--spacing-lg);
+  }
+  
+  .page-header h1 {
+    font-size: 28px;
+  }
+  
+  .page-header .subtitle {
+    font-size: 16px;
+  }
+  
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: var(--spacing-lg);
+  }
+  
+  .action-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .login-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .login-header {
+    padding: var(--spacing-xl);
+  }
+  
+  .app-title {
+    font-size: 24px;
+  }
+  
+  .credentials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: var(--spacing-md);
+  }
+  
+  .page-header h1 {
+    font-size: 24px;
+  }
+  
+  .page-header .subtitle {
+    font-size: 14px;
+  }
+  
+  .card {
+    padding: var(--spacing-md);
+  }
+  
+  .action-card {
+    padding: var(--spacing-md);
+  }
+  
+  .activity-item {
+    padding: var(--spacing-md);
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .login-container {
+    margin: var(--spacing-md);
+    min-height: auto;
+  }
+  
+  .login-header {
+    padding: var(--spacing-lg);
+  }
+  
+  .login-form-container {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Aplicação de animações */
+.card, .action-card, .activity-item {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-icon, .action-icon {
+  animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+/* Micro-interações */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover .card-icon {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.action-card:hover .action-icon {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Utilitários */
+.text-center { text-align: center; }
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; } 
+
+/* Estilos específicos para a página do paciente */
+
+/* Seleção de humor */
+.humor-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.humor-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    background: var(--card-bg);
+}
+
+.humor-option:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.humor-option.selected {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.humor-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.humor-option span {
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Escala de humor */
+.humor-scale {
+    margin: 2rem 0;
+}
+
+.humor-scale label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+  border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.scale-value {
+  display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+/* Observações de humor */
+.humor-notes {
+    margin: 2rem 0;
+}
+
+.humor-notes label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  color: var(--text);
+}
+
+.humor-notes textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.humor-notes textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Histórico de humor */
+.humor-history {
+    margin-top: 3rem;
+}
+
+.history-chart {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.history-list {
+    margin-top: 2rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+    transform: translateX(4px);
+}
+
+.history-date {
+  font-weight: 500;
+    color: var(--text);
+    min-width: 80px;
+}
+
+.history-humor {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+}
+
+.history-time {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Sessões do paciente */
+.sessoes-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.proxima-sessao {
+  background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.sessao-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: var(--background);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.sessao-info h4 {
+    margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.sessao-info p {
+    margin: 0.25rem 0;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+    gap: 0.5rem;
+}
+
+.sessao-actions {
+  display: flex;
+    gap: 1rem;
+}
+
+.historico-sessoes {
+  background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.sessoes-lista {
+    margin-top: 1rem;
+}
+
+.sessao-item {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background: var(--background);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease;
+}
+
+.sessao-item:hover {
+  transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.sessao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sessao-status {
+    padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.sessao-status.concluida {
+    background: var(--success);
+    color: white;
+}
+
+/* Progresso do paciente */
+.progresso-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.progresso-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.progresso-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.progresso-value {
+    font-size: 2rem;
+    font-weight: 700;
+  color: var(--primary);
+    margin: 1rem 0;
+}
+
+.progresso-chart {
+    margin-top: 1rem;
+    height: 200px;
+}
+
+.conquistas {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.conquistas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.conquista-item {
+  display: flex;
+  align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--background);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease;
+}
+
+.conquista-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.conquista-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.conquista-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.conquista-content p {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.conquista-date {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Recursos do paciente */
+.recursos-content {
+    margin-top: 2rem;
+}
+
+.recursos-grid {
+  display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.recurso-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+  background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.recurso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.recurso-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.recurso-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.recurso-content p {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Perfil do paciente */
+.perfil-content {
+    margin-top: 2rem;
+}
+
+.perfil-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.perfil-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary);
+  color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.perfil-info h3 {
+    margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.perfil-info p {
+  color: var(--text-light);
+}
+
+.perfil-details {
+  display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item label {
+    display: block;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.detail-item p {
+    color: var(--text-light);
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+/* Configurações do paciente */
+.configuracoes-content {
+    margin-top: 2rem;
+}
+
+.config-section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.config-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    font-size: 1.25rem;
+}
+
+.notificacoes-config,
+.privacidade-config {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.checkbox-item:hover {
+    background: var(--background);
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+.checkbox-item span {
+  color: var(--text);
+    font-weight: 500;
+}
+
+.logout-section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.logout-section .btn {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-section .btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Responsividade para página do paciente */
+@media (max-width: 768px) {
+    .humor-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .humor-option {
+        padding: 1rem;
+    }
+    
+    .humor-emoji {
+        font-size: 2rem;
+    }
+    
+    .sessao-card {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .sessao-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .progresso-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .conquistas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .recursos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .perfil-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .config-section {
+        padding: 1.5rem;
+    }
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA PÁGINA DO PSICÓLOGO ===== */
+
+/* Estilos para seções específicas do psicólogo */
+.perfil-psicologo .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.perfil-psicologo .quick-actions {
+    margin-bottom: 2rem;
+}
+
+.perfil-psicologo .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.perfil-psicologo .recent-activity {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .activity-list {
+  display: flex;
+  flex-direction: column;
+    gap: 1rem;
+}
+
+.perfil-psicologo .activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.perfil-psicologo .activity-item:hover {
+    background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.perfil-psicologo .activity-icon {
+    width: 40px;
+    height: 40px;
+    background: #0f172a;
+    border-radius: 50%;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.perfil-psicologo .activity-content h4 {
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.perfil-psicologo .activity-content p {
+    color: #64748b;
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .activity-time {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+/* Estilos para seção de pacientes */
+.perfil-psicologo .pacientes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.perfil-psicologo .pacientes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.perfil-psicologo .paciente-card {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .paciente-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-psicologo .paciente-header {
+  display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .paciente-avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.perfil-psicologo .paciente-info h3 {
+    color: #fff;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.perfil-psicologo .paciente-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.perfil-psicologo .paciente-status.ativo {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.perfil-psicologo .paciente-status.alerta {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.perfil-psicologo .paciente-status.inativo {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.perfil-psicologo .paciente-stats {
+  display: flex;
+  flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.perfil-psicologo .stat-label {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .stat-value {
+    color: #fff;
+  font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .paciente-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.perfil-psicologo .paciente-actions .btn {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+/* Estilos para seção de sessões */
+.perfil-psicologo .sessoes-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.perfil-psicologo .proxima-sessao {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .sessao-card {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.perfil-psicologo .sessao-info h4 {
+    color: #fff;
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.perfil-psicologo .sessao-info p {
+    color: #cbd5e1;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .sessao-info i {
+    width: 20px;
+    color: #64748b;
+    margin-right: 0.5rem;
+}
+
+.perfil-psicologo .sessao-actions {
+  display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.perfil-psicologo .historico-sessoes {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .section-header {
+  display: flex;
+    justify-content: space-between;
+  align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .sessao-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #0f172a;
+  transition: all 0.3s ease;
+}
+
+.perfil-psicologo .sessao-item:hover {
+    background: #f1f5f9;
+    transform: translateX(4px);
+}
+
+.perfil-psicologo .sessao-item.agendada {
+    border-left-color: #3b82f6;
+}
+
+.perfil-psicologo .sessao-item.concluida {
+    border-left-color: #22c55e;
+}
+
+.perfil-psicologo .sessao-item.cancelada {
+    border-left-color: #ef4444;
+}
+
+.perfil-psicologo .sessao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .sessao-header h4 {
+    color: #0f172a;
+  margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.perfil-psicologo .sessao-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.perfil-psicologo .sessao-status.agendada {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.perfil-psicologo .sessao-status.concluida {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.perfil-psicologo .sessao-status.cancelada {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Estilos para seção de agenda */
+.perfil-psicologo .agenda-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.perfil-psicologo .agenda-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .calendario {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .calendario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .calendario-titulo h3 {
+    color: #0f172a;
+    margin: 0;
+    font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.perfil-psicologo .calendario-titulo p {
+    color: #64748b;
+    margin: 0.25rem 0 0 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .calendario-semana {
+  display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .dia-semana {
+    text-align: center;
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.perfil-psicologo .calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.perfil-psicologo .dia {
+    aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: #f8fafc;
+    color: #64748b;
+}
+
+.perfil-psicologo .dia:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.perfil-psicologo .dia.hoje {
+    background: #0f172a;
+    color: #fff;
+    font-weight: 600;
+}
+
+.perfil-psicologo .dia.com-sessao {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+.perfil-psicologo .dia.com-sessao.hoje {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.perfil-psicologo .sessao-indicator {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ef4444;
+    color: #fff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.perfil-psicologo .calendario-legenda {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.perfil-psicologo .legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.perfil-psicologo .legenda-cor {
+    width: 12px;
+    height: 12px;
+  border-radius: 50%;
+}
+
+.perfil-psicologo .legenda-cor.hoje {
+    background: #0f172a;
+}
+
+.perfil-psicologo .legenda-cor.com-sessao {
+    background: #3b82f6;
+}
+
+.perfil-psicologo .legenda-cor.disponivel {
+    background: #e2e8f0;
+}
+
+.perfil-psicologo .sessoes-header {
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .agenda-resumo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.perfil-psicologo .resumo-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.perfil-psicologo .resumo-icon {
+    width: 40px;
+    height: 40px;
+    background: #0f172a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.perfil-psicologo .resumo-info h4 {
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.perfil-psicologo .resumo-info p {
+    color: #64748b;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+/* Estilos para seção de notas */
+.perfil-psicologo .notas-header {
+    margin-bottom: 2rem;
+}
+
+.perfil-psicologo .nota-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.perfil-psicologo .nota-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-psicologo .nota-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .nota-header h4 {
+    color: #0f172a;
+    margin: 0;
+    font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.perfil-psicologo .nota-tipo {
+    background: #0f172a;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.perfil-psicologo .nota-info {
+    margin-bottom: 1rem;
+}
+
+.perfil-psicologo .nota-info p {
+    color: #64748b;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .nota-info strong {
+    color: #0f172a;
+}
+
+.perfil-psicologo .nota-conteudo {
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .nota-conteudo p {
+    color: #374151;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.perfil-psicologo .nota-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Estilos para seção de recursos */
+.perfil-psicologo .recursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.perfil-psicologo .recurso-card {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 2rem;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .recurso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-psicologo .recurso-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.perfil-psicologo .recurso-content h3 {
+    color: #fff;
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.perfil-psicologo .recurso-content p {
+    color: #cbd5e1;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Estilos para seção de configurações */
+.perfil-psicologo .config-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-psicologo .config-section h3 {
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.perfil-psicologo .config-description {
+    color: #64748b;
+    margin: 0 0 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .horario-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .horario-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.perfil-psicologo .horario-item label {
+    color: #0f172a;
+  font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.perfil-psicologo .horario-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.perfil-psicologo .horario-inputs input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .horario-inputs span {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .config-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.perfil-psicologo .notificacoes-config,
+.perfil-psicologo .privacidade-config {
+  display: grid;
+    gap: 1rem;
+}
+
+.perfil-psicologo .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.perfil-psicologo .checkbox-item:hover {
+    background: #f1f5f9;
+}
+
+.perfil-psicologo .checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0f172a;
+}
+
+.perfil-psicologo .checkbox-item span {
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .aparencia-config {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.perfil-psicologo .tema-option {
+    position: relative;
+}
+
+.perfil-psicologo .radio-item {
+  display: flex;
+    flex-direction: column;
+  align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.perfil-psicologo .radio-item:hover {
+    background: #f1f5f9;
+    border-color: #0f172a;
+}
+
+.perfil-psicologo .radio-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.perfil-psicologo .radio-item input[type="radio"]:checked + .radio-custom {
+    background: #0f172a;
+    border-color: #0f172a;
+}
+
+.perfil-psicologo .radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.perfil-psicologo .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.perfil-psicologo .radio-item input[type="radio"]:checked + .radio-custom::after {
+    opacity: 1;
+}
+
+.perfil-psicologo .tema-preview {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #d1d5db;
+}
+
+.perfil-psicologo .tema-preview.claro {
+    background: #fff;
+}
+
+.perfil-psicologo .tema-preview.escuro {
+    background: #1f2937;
+}
+
+.perfil-psicologo .tema-preview.auto {
+    background: linear-gradient(45deg, #fff 50%, #1f2937 50%);
+}
+
+.perfil-psicologo .preview-header {
+    height: 8px;
+    background: #0f172a;
+}
+
+.perfil-psicologo .preview-content {
+    height: 32px;
+    background: #f8fafc;
+}
+
+.perfil-psicologo .tema-label {
+    color: #374151;
+    font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.perfil-psicologo .logout-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.perfil-psicologo .logout-info {
+    margin-bottom: 1.5rem;
+}
+
+.perfil-psicologo .logout-info h4 {
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  display: flex;
+  align-items: center;
+    gap: 0.75rem;
+}
+
+.perfil-psicologo .logout-info p {
+    color: #64748b;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.perfil-psicologo .logout-actions {
+  display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsividade para página do psicólogo */
+@media (max-width: 1024px) {
+    .perfil-psicologo .sessoes-content,
+    .perfil-psicologo .agenda-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .perfil-psicologo .pacientes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .perfil-psicologo .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .perfil-psicologo .pacientes-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .perfil-psicologo .pacientes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .recursos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .aparencia-config {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .config-actions,
+    .perfil-psicologo .logout-actions {
+        flex-direction: column;
+    }
+    
+    .perfil-psicologo .agenda-resumo {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-psicologo .calendario-semana,
+    .perfil-psicologo .calendario-dias {
+        gap: 0.25rem;
+    }
+    
+    .perfil-psicologo .dia {
+        font-size: 0.8rem;
+    }
+    
+    .perfil-psicologo .calendario-legenda {
+        flex-direction: column;
+  align-items: center;
+        gap: 0.5rem;
+    }
+} 
+
+/* Estilos para navegação melhorada */
+.nav-link.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.nav-link.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Transições suaves para seções */
+.section {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block;
+}
+
+body.navigating .section {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.section:not(.active) {
+    z-index: 0;
+    display: none;
+}
+
+/* Efeito de profundidade para seção ativa */
+.section.active {
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Melhorias na animação de entrada das seções */
+.section {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block;
+}
+
+.section:not(.active) {
+    z-index: 0;
+    display: none;
+}
+
+/* Efeito de profundidade para seção ativa */
+.section.active {
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Melhorias na transição entre seções */
+body.navigating .section {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Melhorias no feedback visual */
+.nav-link:active {
+    transform: scale(0.98);
+}
+
+/* Indicador de seção atual no topo */
+.page-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    z-index: 999;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.page-indicator.active {
+    transform: scaleX(1);
+}
+
+.page-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: linear-gradient(90deg, var(--primary-light), var(--primary));
+    transition: width 0.1s ease;
+}
+
+/* Efeito de ripple para navegação */
+.nav-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.1);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Efeito de pulse para destaque */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Melhorias no indicador de progresso */
+.section-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(15, 23, 42, 0.1);
+    z-index: 1000;
+}
+
+.section-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 0.3s ease;
+}
+
+/* Melhorias na animação de entrada das seções */
+.section {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block;
+}
+
+.section:not(.active) {
+    z-index: 0;
+    display: none;
+}
+
+/* Efeito de profundidade para seção ativa */
+.section.active {
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Melhorias na transição entre seções */
+body.navigating .section {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Melhorias no feedback visual da navegação */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.nav-link:active {
+    transform: scale(0.98);
+}
+
+/* Melhorias na acessibilidade */
+.nav-link:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+    border-radius: 8px;
+}
+
+/* Melhorias no contraste e legibilidade */
+.nav-link {
+  color: var(--text);
+    text-shadow: none;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link.active {
+    color: #ffffff !important;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Indicador de seção no sidebar */
+.sidebar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--primary);
+    transition: height 0.3s ease;
+}
+
+.sidebar.has-active::after {
+    height: 100%;
+}
+
+/* Melhorias na animação de entrada */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-link {
+    animation: slideInFromLeft 0.3s ease;
+}
+
+.nav-link:nth-child(1) { animation-delay: 0.1s; }
+.nav-link:nth-child(2) { animation-delay: 0.2s; }
+.nav-link:nth-child(3) { animation-delay: 0.3s; }
+.nav-link:nth-child(4) { animation-delay: 0.4s; }
+.nav-link:nth-child(5) { animation-delay: 0.5s; }
+.nav-link:nth-child(6) { animation-delay: 0.6s; }
+.nav-link:nth-child(7) { animation-delay: 0.7s; }
+.nav-link:nth-child(8) { animation-delay: 0.8s; }
+
+/* Melhorias na responsividade da navegação */
+@media (max-width: 1024px) {
+    .nav-link:hover {
+        transform: none;
+    }
+    
+    .nav-link.active::before {
+        width: 3px;
+    }
+    
+    .sidebar.open .nav-link {
+        animation: slideInLeft 0.3s ease;
+    }
+    
+    .page-indicator {
+        height: 3px;
+    }
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 768px) {
+    .nav-link {
+        animation: none;
+    }
+    
+    .nav-link:nth-child(n) {
+        animation-delay: 0s;
+    }
+    
+    .page-indicator {
+        height: 4px;
+    }
+    
+    .nav-ripple {
+        display: none;
+    }
+}
+
+/* Melhorias na navegação ativa */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-link:hover::before {
+    width: 4px;
+}
+
+.nav-link.active::before {
+    width: 4px;
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent);
+    border-right: 3px solid #3b82f6;
+}
+
+/* Indicador de seção ativa */
+.nav-link.active i {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.nav-link.active span {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Melhorias no hover dos links */
+.nav-link:hover {
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.05), transparent);
+    transform: translateX(4px);
+}
+
+.nav-link:hover i {
+    transform: scale(1.05);
+}
+
+/* Scroll suave para seções */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Indicador de progresso da seção */
+.section-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(15, 23, 42, 0.1);
+    z-index: 1000;
+}
+
+.section-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 0.3s ease;
+}
+
+/* Melhorias na responsividade da navegação */
+@media (max-width: 1024px) {
+    .nav-link:hover {
+        transform: none;
+    }
+    
+    .nav-link.active::before {
+        width: 3px;
+    }
+    
+    .sidebar.open .nav-link {
+        animation: slideInLeft 0.3s ease;
+    }
+}
+
+/* Animações para entrada de seções */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Correção para exibição das seções */
+.section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.section.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garantir que apenas a seção ativa seja visível */
+.section:not(.active) {
+    display: none !important;
+}
+
+/* Melhorias finais para apresentação das páginas */
+
+/* Transições mais suaves para todas as seções */
+.section {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    position: relative;
+    z-index: 1;
+}
+
+.section.active {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Melhorar animação de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Melhorar espaçamento geral */
+main {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    transition: all 0.3s ease;
+}
+
+/* Refinar cards com sombras mais suaves */
+.card, .action-card {
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover, .action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.12);
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* Melhorar ícones dos cards */
+.card-icon, .action-icon {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-icon::before, .action-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.card:hover .card-icon::before,
+.action-card:hover .action-icon::before {
+    left: 100%;
+}
+
+/* Melhorar botões */
+.btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Melhorar navegação lateral */
+.nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 12px 12px 0;
+    margin: 4px 0;
+    overflow: hidden;
+    color: #e2e8f0;
+}
+
+.nav-link:hover {
+    transform: translateX(4px);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.nav-link.active span {
+    color: #ffffff !important;
+}
+
+.nav-link i {
+    transition: all 0.3s ease;
+    color: inherit;
+}
+
+.nav-link:hover i {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.nav-link.active i {
+    transform: scale(1.1);
+    color: #ffffff !important;
+}
+
+/* Melhorar página header */
+.page-header {
+    border-bottom: 2px solid rgba(15, 23, 42, 0.05);
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    border-radius: 1px;
+}
+
+.page-header h1 {
+    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Melhorar grid de cards */
+.dashboard-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.actions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* Melhorar responsividade */
+@media (max-width: 1200px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .actions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Melhorar indicador de página */
+.page-indicator::before {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--primary));
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Melhorar efeitos de hover nos cards */
+.card:hover .card-icon,
+.action-card:hover .action-icon {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* Melhorar animações de entrada para elementos */
+.card, .action-card, .activity-item {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Melhorar sidebar com gradiente sutil */
+.sidebar {
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #1e293b 100%);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Melhorar user info */
+.user-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.user-avatar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Melhorar scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+}
+
+/* Estado de carregamento */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.loading::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 3px solid rgba(15, 23, 42, 0.1);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10000;
+}
+
+/* Melhorar notificações */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 500;
+    z-index: 10001;
+    transform: translateX(100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+.notification.success {
+    background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, var(--warning) 0%, #fbbf24 100%);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, var(--danger) 0%, #f87171 100%);
+}
+
+/* Melhorar micro-interações */
+.card, .action-card {
+    cursor: pointer;
+}
+
+.card:active, .action-card:active {
+    transform: translateY(-2px) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+/* Melhorar acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Melhorar contraste para acessibilidade */
+@media (prefers-contrast: high) {
+    .card, .action-card {
+        border: 2px solid var(--text);
+    }
+    
+    .nav-link {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Estilos para seções */
+.section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: var(--spacing-xl);
+  min-height: calc(100vh - 80px);
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section:not(.active) {
+  display: none;
+}
