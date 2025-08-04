@@ -451,7 +451,7 @@ class AuthSystem {
     logout() {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 
     updateUI() {
@@ -538,9 +538,9 @@ class EquilibrarApp {
 
     init() {
         // Verificar autenticação apenas se não estiver na página de login
-        if (!this.auth.isAuthenticated() && !window.location.href.includes('login.html')) {
+        if (!this.auth.isAuthenticated() && !window.location.href.includes('index.html')) {
             // Permitir acesso direto às páginas para demonstração
-            // window.location.href = 'login.html';
+            // window.location.href = 'index.html';
             // return;
         }
 
@@ -574,7 +574,7 @@ class EquilibrarApp {
         const path = window.location.pathname;
         if (path.includes('paciente.html')) return 'paciente';
         if (path.includes('psicologo.html')) return 'psicologo';
-        if (path.includes('login.html')) return 'login';
+        if (path.includes('index.html')) return 'login';
         return 'dashboard';
     }
 

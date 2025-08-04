@@ -1048,7 +1048,7 @@ function formatarData(data) {
 // Logout
 function logout() {
     localStorage.removeItem('equilibrar_usuario_atual');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 // Sistema de backup automático
